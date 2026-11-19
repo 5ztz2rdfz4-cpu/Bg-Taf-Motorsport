@@ -1,0 +1,109 @@
+<template>
+  <style>
+    #captions {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #captions .cg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1170px;
+      padding: 0 130px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      overflow: visible;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 68px;
+      line-height: 1.08;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    #captions .w {
+      display: inline-block;
+      margin: 0 4px;
+      color: #ffffff;
+      -webkit-text-stroke: 10px #0a0a0a;
+      paint-order: stroke fill;
+      text-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+    }
+    #captions .w.hl {
+      color: var(--brand, #ffd400);
+    }
+  </style>
+  <div id="captions" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div class="cg" id="cg0"><span class="w hl" id="cw0_0">Gen</span> <span class="w hl" id="cw0_1">Strawberry</span></div>
+    <div class="cg" id="cg1"><span class="w" id="cw1_0">sekarang</span> <span class="w" id="cw1_1">kalau</span></div>
+    <div class="cg" id="cg2"><span class="w" id="cw2_0">nak</span> <span class="w" id="cw2_1">keluar</span></div>
+    <div class="cg" id="cg3"><span class="w" id="cw3_0">mesti</span> <span class="w" id="cw3_1">nak</span> <span class="w" id="cw3_2">kena</span></div>
+    <div class="cg" id="cg4"><span class="w" id="cw4_0">tanya</span> <span class="w hl" id="cw4_1">mak</span> <span class="w hl" id="cw4_2">ayah</span> <span class="w" id="cw4_3">dulu</span></div>
+    <div class="cg" id="cg5"><span class="w" id="cw5_0">nak</span> <span class="w hl" id="cw5_1">pinjam</span> <span class="w" id="cw5_2">kereta</span></div>
+    <div class="cg" id="cg6"><span class="w hl" id="cw6_0">mak,</span> <span class="w hl" id="cw6_1">ayah,</span></div>
+    <div class="cg" id="cg7"><span class="w hl" id="cw7_0">abang,</span> <span class="w hl" id="cw7_1">akak.</span></div>
+    <div class="cg" id="cg8"><span class="w hl" id="cw8_0">Sampai</span> <span class="w hl" id="cw8_1">bila</span> <span class="w" id="cw8_2">korang</span></div>
+    <div class="cg" id="cg9"><span class="w" id="cw9_0">nak</span> <span class="w" id="cw9_1">macam</span> <span class="w" id="cw9_2">ni?</span></div>
+    <div class="cg" id="cg10"><span class="w" id="cw10_0">So</span> <span class="w" id="cw10_1">sekarang</span> <span class="w" id="cw10_2">ni</span></div>
+    <div class="cg" id="cg11"><span class="w" id="cw11_0">ada</span> <span class="w" id="cw11_1">kereta</span> <span class="w" id="cw11_2">yang</span></div>
+    <div class="cg" id="cg12"><span class="w hl" id="cw12_0">mampu</span> <span class="w hl" id="cw12_1">milik</span></div>
+    <div class="cg" id="cg13"><span class="w" id="cw13_0">iaitu</span> <span class="w hl" id="cw13_1">Saga</span> <span class="w hl" id="cw13_2">MC3</span></div>
+    <div class="cg" id="cg14"><span class="w" id="cw14_0">bulanan</span> <span class="w" id="cw14_1">hanya</span></div>
+    <div class="cg" id="cg15"><span class="w" id="cw15_0">serendah</span> <span class="w hl" id="cw15_1">RM400</span> <span class="w hl" id="cw15_2">lebih</span></div>
+    <div class="cg" id="cg16"><span class="w" id="cw16_0">sahaja</span></div>
+    <div class="cg" id="cg17"><span class="w" id="cw17_0">korang</span> <span class="w" id="cw17_1">dah</span> <span class="w" id="cw17_2">boleh</span></div>
+    <div class="cg" id="cg18"><span class="w hl" id="cw18_0">pakai</span> <span class="w" id="cw18_1">dah</span> <span class="w" id="cw18_2">kereta</span> <span class="w" id="cw18_3">ni.</span></div>
+    <div class="cg" id="cg19"><span class="w hl" id="cw19_0">Low</span> <span class="w hl" id="cw19_1">maintenance,</span></div>
+    <div class="cg" id="cg20"><span class="w hl" id="cw20_0">jimat</span> <span class="w hl" id="cw20_1">minyak</span></div>
+    <div class="cg" id="cg21"><span class="w" id="cw21_0">Kalau</span> <span class="w" id="cw21_1">kata</span> <span class="w" id="cw21_2">korang</span></div>
+    <div class="cg" id="cg22"><span class="w" id="cw22_0">nak</span> <span class="w" id="cw22_1">dapatkan</span></div>
+    <div class="cg" id="cg23"><span class="w" id="cw23_0">kereta</span> <span class="w hl" id="cw23_1">Saga</span> <span class="w" id="cw23_2">ni,</span></div>
+    <div class="cg" id="cg24"><span class="w" id="cw24_0">boleh</span> <span class="w" id="cw24_1">terus</span> <span class="w hl" id="cw24_2">tekan</span></div>
+    <div class="cg" id="cg25"><span class="w hl" id="cw25_0">beg</span> <span class="w hl" id="cw25_1">biru.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // A group pops in, each word bumps as it is spoken, then a hard kill.
+    function show(sel, start, end, wordTimes) {
+      const g = document.querySelector(sel);
+      const ws = g.querySelectorAll(".w");
+      tl.set(g, { visibility: "visible" }, start);
+      tl.fromTo(g, { opacity: 0, y: 26, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.16, ease: "back.out(2)" }, start);
+      ws.forEach((w, i) => {
+        const t = Math.max(start, wordTimes[i]);
+        tl.fromTo(w, { scale: 1 }, { scale: 1.14, duration: 0.08, ease: "power2.out" }, t);
+        tl.to(w, { scale: 1, duration: 0.14, ease: "power2.inOut" }, t + 0.08);
+      });
+      tl.to(g, { opacity: 0, duration: 0.08, ease: "power2.in" }, end - 0.08);
+      tl.set(g, { opacity: 0, visibility: "hidden" }, end);
+    }
+  show("#cg0", 0.120, 0.623, [0.083,0.333]);
+  show("#cg1", 0.623, 1.703, [0.683,1.113]);
+  show("#cg2", 1.703, 2.583, [1.763,2.083]);
+  show("#cg3", 2.583, 3.903, [2.643,3.523,3.703]);
+  show("#cg4", 3.903, 4.763, [3.963,4.303,4.443,4.643]);
+  show("#cg5", 4.763, 5.943, [4.823,5.243,5.523]);
+  show("#cg6", 5.943, 7.003, [6.003,6.443]);
+  show("#cg7", 7.003, 8.167, [7.063,7.683]);
+  show("#cg8", 8.167, 8.807, [8.227,8.467,8.647]);
+  show("#cg9", 8.807, 9.523, [8.867,8.987,9.167]);
+  show("#cg10", 9.523, 10.493, [9.583,9.783,10.233]);
+  show("#cg11", 10.493, 12.153, [10.553,11.113,11.993]);
+  show("#cg12", 12.153, 12.773, [12.213,12.533]);
+  show("#cg13", 12.773, 14.733, [12.833,13.253,13.673]);
+  show("#cg14", 14.733, 16.133, [14.793,15.733]);
+  show("#cg15", 16.133, 17.693, [16.193,16.973,17.393]);
+  show("#cg16", 17.693, 18.173, [17.753]);
+  show("#cg17", 18.173, 18.893, [18.233,18.653,18.753]);
+  show("#cg18", 18.893, 20.123, [18.953,19.293,19.493,19.833]);
+  show("#cg19", 20.123, 20.933, [20.183,20.353]);
+  show("#cg20", 20.933, 21.960, [20.993,21.253]);
+  show("#cg21", 21.960, 22.710, [22.020,22.210,22.510]);
+  show("#cg22", 22.710, 23.130, [22.770,22.870]);
+  show("#cg23", 23.130, 23.950, [23.190,23.510,23.750]);
+  show("#cg24", 23.950, 25.170, [24.010,24.490,24.750]);
+  show("#cg25", 25.170, 25.967, [25.230,25.410]);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

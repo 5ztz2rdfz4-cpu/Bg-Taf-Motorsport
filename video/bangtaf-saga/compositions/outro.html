@@ -1,0 +1,143 @@
+<template>
+  <style>
+    #outro {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #outro .bg {
+      position: absolute;
+      inset: 0;
+      background-color: #0c0c0e;
+      background-image:
+        radial-gradient(ellipse at 50% 38%, rgba(255, 212, 0, 0.22) 0%, rgba(255, 212, 0, 0) 55%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.05) 75%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.05) 75%);
+      background-size: 100% 100%, 22px 22px, 22px 22px;
+      background-position: 0 0, 0 0, 11px 11px;
+    }
+    #outro .slash {
+      position: absolute;
+      left: -200px;
+      width: 1500px;
+      height: 26px;
+      background: var(--brand, #ffd400);
+      transform: rotate(-12deg);
+    }
+    #outro .wipe {
+      position: absolute;
+      inset: 0;
+      background: var(--brand, #ffd400);
+    }
+    #outro .logo {
+      position: absolute;
+      left: 150px;
+      top: 320px;
+      width: 780px;
+    }
+    #outro .sub {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 860px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 34px;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    #outro .offer {
+      position: absolute;
+      left: 130px;
+      right: 130px;
+      top: 930px;
+      height: 150px;
+      border-radius: 28px;
+      background: var(--brand, #ffd400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 46px;
+      color: #0b0b0c;
+      box-shadow: 0 20px 50px rgba(255, 212, 0, 0.25);
+    }
+    #outro .offer small {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+    }
+    #outro .follow {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1130px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    #outro .pill {
+      height: 96px;
+      padding: 0 28px;
+      border-radius: 48px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      letter-spacing: 0.02em;
+    }
+    #outro .pill svg {
+      width: 44px;
+      height: 44px;
+    }
+    #outro .pill.red {
+      background: #fe2c55;
+      color: #fff;
+    }
+    #outro .pill.blue {
+      background: var(--bagBlue, #1f7bff);
+      color: #fff;
+    }
+  </style>
+  <div id="outro" data-composition-id="outro" data-width="1080" data-height="1920" data-layout-allow-overlap data-layout-allow-overflow>
+    <div class="bg" id="o-bg"></div>
+    <div class="slash" id="o-slash1" style="top: 230px"></div>
+    <div class="slash" id="o-slash2" style="top: 1290px"></div>
+    <img class="logo" id="o-logo" src="assets/logo.png" alt="Bang Taf Motorsport" />
+    <div class="sub" id="o-sub">KERETA IMPIAN, BAJET MAMPU</div>
+    <div class="offer" id="o-offer">SAGA MC3 <small>BULANAN DARI</small> RM400++</div>
+    <div class="follow" id="o-follow">
+      <div class="pill red" id="o-pill-follow">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="#fff"/><path d="M24 14v20M14 24h20" stroke="#FE2C55" stroke-width="6" stroke-linecap="round"/></svg>
+        FOLLOW
+      </div>
+      <div class="pill blue" id="o-pill-bag">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 22h40l-4 34H16z" fill="#fff"/><path d="M22 26v-6a10 10 0 0 1 20 0v6" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+        TEKAN BEG BIRU
+      </div>
+    </div>
+    <div class="wipe" id="o-wipe"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Yellow sweeps across the zooming footage, then clears off the carbon stage.
+    tl.fromTo("#o-wipe", { clipPath: "polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%)" },
+      { clipPath: "polygon(0% 100%, 0% -60%, 160% -60%, 160% 100%)", duration: 0.32, ease: "power3.in" }, 0);
+    tl.fromTo("#o-bg", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0.3);
+    tl.to("#o-wipe", { clipPath: "polygon(160% 100%, 160% -60%, 160% -60%, 160% 100%)", duration: 0.32, ease: "power3.out" }, 0.34);
+    tl.fromTo("#o-slash1", { x: -1600 }, { x: 0, duration: 0.45, ease: "expo.out" }, 0.4);
+    tl.fromTo("#o-slash2", { x: 1600 }, { x: 0, duration: 0.45, ease: "expo.out" }, 0.45);
+    // Logo lands on the bass hit (0.79).
+    tl.fromTo("#o-logo", { opacity: 0, scale: 2.4, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, 0.47);
+    tl.fromTo("#o-logo", { y: 0 }, { y: 10, duration: 0.05, ease: "none", yoyo: true, repeat: 3 }, 0.79);
+    tl.fromTo("#o-sub", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 1.1);
+    tl.fromTo("#o-offer", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 1.45);
+    tl.fromTo("#o-pill-follow", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" }, 2.0);
+    tl.fromTo("#o-pill-bag", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" }, 2.1);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

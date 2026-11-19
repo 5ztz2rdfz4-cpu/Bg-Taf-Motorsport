@@ -1,0 +1,171 @@
+<template>
+  <style>
+    #price {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #price .card {
+      position: absolute;
+      left: 100px;
+      right: 100px;
+      top: 292px;
+      height: 440px;
+      border-radius: 36px;
+      background: rgba(12, 12, 14, 0.84);
+      border: 3px solid rgba(255, 212, 0, 0.9);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+    }
+    #price .stripe {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 16px;
+      background: var(--brand, #ffd400);
+    }
+    #price .lab {
+      position: absolute;
+      left: 60px;
+      top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 38px;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.86);
+    }
+    #price .lab svg {
+      width: 46px;
+      height: 46px;
+    }
+    #price .amount {
+      position: absolute;
+      left: 56px;
+      top: 104px;
+      display: flex;
+      align-items: flex-end;
+      font-family: "Archivo Black", sans-serif;
+      color: #fff;
+      line-height: 1;
+    }
+    #price .rm {
+      font-size: 84px;
+      margin: 0 10px 22px 0;
+      color: var(--brand, #ffd400);
+    }
+    #price .num {
+      font-size: 170px;
+      min-width: 340px;
+      font-variant-numeric: tabular-nums;
+    }
+    #price .plus {
+      font-size: 100px;
+      margin: 0 0 26px 4px;
+      color: var(--brand, #ffd400);
+    }
+    #price .per {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 38px;
+      margin: 0 0 34px 14px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    #price .meter {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      top: 352px;
+      height: 30px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.14);
+      overflow: hidden;
+    }
+    #price .fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      border-radius: 15px;
+      background: linear-gradient(90deg, #ffd400, #ffef7a);
+      transform-origin: left center;
+    }
+    #price .meter-tag {
+      position: absolute;
+      right: 60px;
+      top: 300px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.1em;
+      color: var(--brand, #ffd400);
+    }
+    #price .chip {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      top: 318px;
+      height: 92px;
+      border-radius: 22px;
+      background: var(--brand, #ffd400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 50px;
+      color: #0b0b0c;
+    }
+    #price .chip svg {
+      width: 56px;
+      height: 56px;
+    }
+  </style>
+  <div id="price" data-composition-id="price" data-width="1080" data-height="1920" data-layout-allow-overlap>
+    <div class="card" id="price-card">
+      <div class="stripe"></div>
+      <div class="lab" id="price-lab">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="32" rx="5" fill="none" stroke="#FFD400" stroke-width="4"/><path d="M6 19h36M15 6v8M33 6v8" stroke="#FFD400" stroke-width="4" stroke-linecap="round"/></svg>
+        BULANAN SERENDAH
+      </div>
+      <div class="amount" id="price-amount">
+        <span class="rm">RM</span><span class="num" id="price-num">400</span><span class="plus" id="price-plus">++</span><span class="per" id="price-per">/ bulan</span>
+      </div>
+      <div class="meter-tag" id="price-mtag">MAMPU MILIK</div>
+      <div class="meter" id="price-meter"><div class="fill" id="price-fill"></div></div>
+      <div class="chip" id="price-chip">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="16" cy="24" r="10" fill="none" stroke="#0b0b0c" stroke-width="5"/><path d="M26 24h18M38 24v8M44 24v6" stroke="#0b0b0c" stroke-width="5" stroke-linecap="round"/></svg>
+        TERUS BOLEH PAKAI!
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const num = document.querySelector("#price-num");
+    tl.fromTo("#price-card", { opacity: 0, y: -40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 0.08);
+    tl.fromTo("#price-lab", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 0.3);
+    // Counter runs from "serendah" and lands on the spoken "RM400" (local 1.97).
+    const counter = { v: 0 };
+    tl.set(num, { textContent: "0" }, 0);
+    tl.fromTo(counter, { v: 0 }, {
+      v: 400, duration: 1.5, ease: "power3.out",
+      onUpdate: () => { num.textContent = String(Math.round(counter.v)); },
+    }, 0.47);
+    tl.fromTo("#price-amount", { scale: 1 }, { scale: 1.07, duration: 0.1, ease: "power2.out", transformOrigin: "left bottom" }, 1.97);
+    tl.to("#price-amount", { scale: 1, duration: 0.2, ease: "power2.inOut" }, 2.07);
+    tl.fromTo("#price-plus", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 2.39);
+    tl.fromTo("#price-per", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 2.6);
+    tl.fromTo("#price-meter", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.47);
+    tl.fromTo("#price-fill", { scaleX: 0 }, { scaleX: 0.86, duration: 1.5, ease: "power3.out" }, 0.47);
+    tl.fromTo("#price-mtag", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 1.97);
+    // "pakai" (local 3.95): the meter row gives way to the chip.
+    tl.to(["#price-meter", "#price-mtag"], { opacity: 0, y: 10, duration: 0.15, ease: "power2.in" }, 3.72);
+    tl.fromTo("#price-chip", { opacity: 0, y: 40, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.38, ease: "back.out(1.8)" }, 3.85);
+    tl.to("#price-card", { opacity: 0, y: -30, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, 4.88);
+    window.__timelines["price"] = tl;
+  </script>
+</template>

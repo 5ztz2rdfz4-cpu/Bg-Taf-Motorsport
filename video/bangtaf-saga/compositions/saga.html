@@ -1,0 +1,195 @@
+<template>
+  <style>
+    #saga {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #saga .label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      text-align: center;
+    }
+    #saga .label span {
+      display: inline-block;
+      padding: 16px 34px;
+      border-radius: 18px;
+      background: var(--brand, #ffd400);
+      color: #0b0b0c;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 64px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+    }
+    /* Full-frame motion B-roll */
+    #saga .broll {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background-color: #0d0d0f;
+      background-image:
+        linear-gradient(45deg, rgba(255, 255, 255, 0.045) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.045) 75%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.045) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.045) 75%);
+      background-size: 22px 22px;
+      background-position: 0 0, 11px 11px;
+    }
+    #saga .glow {
+      position: absolute;
+      left: -200px;
+      right: -200px;
+      top: 540px;
+      height: 520px;
+      background: radial-gradient(ellipse at center, rgba(255, 212, 0, 0.35) 0%, rgba(255, 212, 0, 0) 65%);
+    }
+    #saga .band {
+      position: absolute;
+      left: -300px;
+      width: 1700px;
+      top: 815px;
+      height: 110px;
+      background: var(--brand, #ffd400);
+      transform: rotate(-8deg);
+    }
+    #saga .lines {
+      position: absolute;
+      left: 0;
+      top: 560px;
+      width: 2400px;
+      height: 520px;
+    }
+    #saga .lines div {
+      position: absolute;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75));
+    }
+    #saga .kicker {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 290px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 46px;
+      letter-spacing: 0.5em;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    #saga .name {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 345px;
+      text-align: center;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 230px;
+      line-height: 1;
+      color: #fff;
+    }
+    #saga .name i,
+    #saga .model i {
+      display: inline-block;
+      font-style: normal;
+      transform: skewX(-10deg);
+    }
+    #saga .model {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 935px;
+      text-align: center;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 180px;
+      line-height: 1;
+      color: var(--brand, #ffd400);
+      -webkit-text-stroke: 8px #0b0b0c;
+      paint-order: stroke fill;
+    }
+    #saga .car {
+      position: absolute;
+      left: 90px;
+      top: 610px;
+      width: 900px;
+      height: 300px;
+    }
+    #saga .pill {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1270px;
+      text-align: center;
+    }
+    #saga .pill span {
+      display: inline-block;
+      padding: 12px 30px;
+      border: 4px solid #fff;
+      border-radius: 999px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 40px;
+      letter-spacing: 0.12em;
+      color: #fff;
+    }
+  </style>
+  <div id="saga" data-composition-id="saga" data-width="1080" data-height="1920" data-layout-allow-overlap data-layout-allow-overflow>
+    <div class="label" id="saga-label"><span>KERETA MAMPU MILIK</span></div>
+
+    <div class="broll" id="saga-broll">
+      <div class="glow" id="saga-glow"></div>
+      <div class="band" id="saga-band"></div>
+      <div class="lines" id="saga-lines">
+        <div style="left: 100px; top: 20px; width: 520px"></div>
+        <div style="left: 700px; top: 90px; width: 380px"></div>
+        <div style="left: 300px; top: 170px; width: 640px"></div>
+        <div style="left: 1100px; top: 240px; width: 420px"></div>
+        <div style="left: 60px; top: 330px; width: 300px"></div>
+        <div style="left: 820px; top: 400px; width: 560px"></div>
+        <div style="left: 1400px; top: 470px; width: 480px"></div>
+        <div style="left: 1500px; top: 120px; width: 380px"></div>
+      </div>
+      <div class="kicker" id="saga-kicker">PROTON</div>
+      <div class="name" id="saga-name"><i>SAGA</i></div>
+      <svg class="car" id="saga-car" viewBox="0 0 600 200" aria-hidden="true">
+        <ellipse cx="300" cy="182" rx="270" ry="12" fill="rgba(0,0,0,0.55)" />
+        <path d="M18 150 L26 122 Q34 108 70 104 L150 96 L205 58 Q228 44 300 44 L372 46 Q408 50 440 76 L470 98 L545 106 Q578 112 582 136 L582 152 Q582 160 570 160 L30 160 Q18 160 18 150 Z" fill="#f4f4f4" />
+        <path d="M212 66 Q232 54 292 54 L292 94 L168 96 Z" fill="#1c2430" />
+        <path d="M304 54 L366 56 Q398 60 428 92 L304 94 Z" fill="#1c2430" />
+        <path d="M24 130 L582 130 L582 140 L22 140 Z" fill="#FFD400" />
+        <rect x="528" y="112" width="40" height="10" rx="5" fill="#ffe9a0" />
+        <rect x="22" y="112" width="26" height="9" rx="4" fill="#ff4b4b" />
+        <g id="saga-wheel-a" transform="translate(140 152)">
+          <circle r="34" fill="#111" /><circle r="20" fill="#cfcfcf" />
+          <path d="M0 -20 V20 M-20 0 H20 M-14 -14 L14 14 M-14 14 L14 -14" stroke="#555" stroke-width="4" />
+        </g>
+        <g id="saga-wheel-b" transform="translate(466 152)">
+          <circle r="34" fill="#111" /><circle r="20" fill="#cfcfcf" />
+          <path d="M0 -20 V20 M-20 0 H20 M-14 -14 L14 14 M-14 14 L14 -14" stroke="#555" stroke-width="4" />
+        </g>
+      </svg>
+      <div class="model" id="saga-model"><i>MC3</i></div>
+      </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // "mampu milik" (local 2.71)
+    tl.fromTo("#saga-label", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 2.62);
+    tl.to("#saga-label", { opacity: 0, duration: 0.15, ease: "power2.in" }, 3.55);
+    // B-roll wipes in on a diagonal (3.6), "Saga" lands 3.75, "MC3" 4.17.
+    tl.fromTo("#saga-broll", { clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)" },
+      { clipPath: "polygon(-30% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 0.32, ease: "power3.out" }, 3.6);
+    tl.fromTo("#saga-lines", { x: 0 }, { x: -1300, duration: 1.85, ease: "none" }, 3.6);
+    tl.fromTo("#saga-band", { scaleX: 0, transformOrigin: "right center" }, { scaleX: 1, duration: 0.4, ease: "expo.out" }, 3.66);
+    tl.fromTo("#saga-glow", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.7);
+    tl.fromTo("#saga-car", { x: 1100, filter: "blur(14px)" }, { x: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 3.62);
+    tl.fromTo("#saga-car", { y: 0 }, { y: -6, duration: 0.12, ease: "power2.out" }, 4.17);
+    tl.to("#saga-car", { y: 0, duration: 0.25, ease: "power2.inOut" }, 4.29);
+    tl.fromTo(["#saga-wheel-a", "#saga-wheel-b"], { rotation: 0, svgOrigin: "0 0" }, { rotation: -900, duration: 1.85, ease: "power2.out" }, 3.6);
+    tl.fromTo("#saga-kicker", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, 3.66);
+    tl.fromTo("#saga-name", { opacity: 0, scale: 1.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.28, ease: "expo.out" }, 3.72);
+    tl.fromTo("#saga-model", { opacity: 0, y: 60, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 4.15);
+    // Whip out upward onto the next line (5.25).
+    tl.to("#saga-broll", { y: -1920, filter: "blur(16px)", duration: 0.26, ease: "power3.in" }, 5.22);
+    window.__timelines["saga"] = tl;
+  </script>
+</template>

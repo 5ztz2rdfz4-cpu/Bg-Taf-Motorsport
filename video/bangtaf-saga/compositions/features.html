@@ -1,0 +1,84 @@
+<template>
+  <style>
+    #features {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #features .row {
+      position: absolute;
+      left: 100px;
+      right: 100px;
+      top: 296px;
+      display: flex;
+      gap: 28px;
+    }
+    #features .badge {
+      flex: 1;
+      height: 380px;
+      border-radius: 34px;
+      background: rgba(12, 12, 14, 0.85);
+      border: 3px solid rgba(255, 212, 0, 0.9);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+    }
+    #features .badge svg {
+      width: 170px;
+      height: 170px;
+      overflow: visible;
+    }
+    #features .badge b {
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 400;
+      font-size: 44px;
+      line-height: 1.02;
+      text-align: center;
+      color: #fff;
+    }
+    #features .badge b em {
+      font-style: normal;
+      color: var(--brand, #ffd400);
+    }
+  </style>
+  <div id="features" data-composition-id="features" data-width="1080" data-height="1920">
+    <div class="row">
+      <div class="badge" id="feat-low">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <g id="feat-wrench">
+            <path d="M66 12a20 20 0 0 0-22 27L14 69a8 8 0 0 0 11 11l30-30a20 20 0 0 0 27-22L70 40l-10-10z" fill="#FFD400" />
+          </g>
+          <circle cx="76" cy="76" r="17" fill="#22c55e" />
+          <path d="M68 76l6 6 11-12" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <b>LOW<br /><em>MAINTENANCE</em></b>
+      </div>
+      <div class="badge" id="feat-fuel">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M14 70a38 38 0 0 1 72 0" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="10" stroke-linecap="round" />
+          <path d="M60 33a38 38 0 0 1 26 37" fill="none" stroke="#22c55e" stroke-width="10" stroke-linecap="round" />
+          <text x="10" y="92" fill="#ff5a5a" font-family="Archivo Black" font-size="18">E</text>
+          <text x="80" y="92" fill="#22c55e" font-family="Archivo Black" font-size="18">F</text>
+          <g id="feat-needle">
+            <path d="M50 70 L50 30" stroke="#FFD400" stroke-width="6" stroke-linecap="round" />
+          </g>
+          <circle cx="50" cy="70" r="8" fill="#FFD400" />
+        </svg>
+        <b>JIMAT<br /><em>MINYAK</em></b>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // "Low maintenance" (local 0.05), "jimat minyak" (local 0.86).
+    tl.fromTo("#feat-low", { opacity: 0, y: 50, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, 0.0);
+    tl.fromTo("#feat-wrench", { rotation: -35, svgOrigin: "50 50" }, { rotation: 0, duration: 0.5, ease: "back.out(2.5)" }, 0.1);
+    tl.fromTo("#feat-fuel", { opacity: 0, y: 50, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, 0.8);
+    tl.fromTo("#feat-needle", { rotation: -70, svgOrigin: "50 70" }, { rotation: 52, duration: 0.6, ease: "back.out(1.6)" }, 0.9);
+    tl.to(["#feat-low", "#feat-fuel"], { opacity: 0, y: -30, filter: "blur(8px)", duration: 0.2, ease: "power3.in", stagger: 0.05 }, 1.58);
+    window.__timelines["features"] = tl;
+  </script>
+</template>

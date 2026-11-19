@@ -1,0 +1,128 @@
+<template>
+  <style>
+    #chips {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #chips .scrim {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 820px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
+    }
+    #chips .title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 260px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 46px;
+      letter-spacing: 0.06em;
+      color: #fff;
+      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+    }
+    #chips .title b {
+      color: var(--brand, #ffd400);
+    }
+    #chips .grid {
+      position: absolute;
+      left: 140px;
+      right: 140px;
+      top: 345px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px 30px;
+    }
+    #chips .chip {
+      position: relative;
+      height: 118px;
+      border-radius: 26px;
+      background: rgba(16, 16, 18, 0.86);
+      border: 4px solid var(--brand, #ffd400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 58px;
+      color: #fff;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+    }
+    #chips .chip svg {
+      width: 54px;
+      height: 54px;
+    }
+    #chips .strike {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 50%;
+      height: 12px;
+      margin-top: -6px;
+      border-radius: 6px;
+      background: #ff2d46;
+      transform-origin: left center;
+    }
+    #chips .slam {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 420px;
+      text-align: center;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 82px;
+      line-height: 1.02;
+      color: var(--brand, #ffd400);
+      -webkit-text-stroke: 10px #000;
+      paint-order: stroke fill;
+      text-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+    }
+    #chips .slam i {
+      display: inline-block;
+      font-style: normal;
+      transform: skewX(-9deg);
+    }
+    #chips .slam small {
+      display: block;
+      font-size: 64px;
+      color: #fff;
+    }
+  </style>
+  <div id="chips" data-composition-id="chips" data-width="1080" data-height="1920" data-layout-allow-overlap>
+    <div class="scrim" id="chips-scrim"></div>
+    <div class="title" id="chips-title">KENA <b>PINJAM KERETA</b>...</div>
+    <div class="grid" id="chips-grid">
+      <div class="chip" id="chip-mak"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="24" r="10" fill="none" stroke="#FFD400" stroke-width="5"/><path d="M27 24h17M38 24v8M44 24v6" stroke="#FFD400" stroke-width="5" stroke-linecap="round"/></svg>MAK<div class="strike" id="strike-mak"></div></div>
+      <div class="chip" id="chip-ayah"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="24" r="10" fill="none" stroke="#FFD400" stroke-width="5"/><path d="M27 24h17M38 24v8M44 24v6" stroke="#FFD400" stroke-width="5" stroke-linecap="round"/></svg>AYAH<div class="strike" id="strike-ayah"></div></div>
+      <div class="chip" id="chip-abang"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="24" r="10" fill="none" stroke="#FFD400" stroke-width="5"/><path d="M27 24h17M38 24v8M44 24v6" stroke="#FFD400" stroke-width="5" stroke-linecap="round"/></svg>ABANG<div class="strike" id="strike-abang"></div></div>
+      <div class="chip" id="chip-akak"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="24" r="10" fill="none" stroke="#FFD400" stroke-width="5"/><path d="M27 24h17M38 24v8M44 24v6" stroke="#FFD400" stroke-width="5" stroke-linecap="round"/></svg>AKAK<div class="strike" id="strike-akak"></div></div>
+    </div>
+    <div class="slam" id="chips-slam"><small id="slam-a">SAMPAI BILA</small><i id="slam-b">NAK MACAM NI?!</i></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#chips-scrim", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+    tl.fromTo("#chips-title", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.45);
+    // One chip per spoken name (mak 1.30, ayah 1.74, abang 2.36, akak 2.98).
+    [["#chip-mak", 1.3], ["#chip-ayah", 1.74], ["#chip-abang", 2.36], ["#chip-akak", 2.98]].forEach(([id, t]) => {
+      tl.fromTo(id, { opacity: 0, scale: 0.4, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(1.7)" }, t);
+    });
+    // "Sampai bila" (3.53): every chip is struck through, then pushed back.
+    ["mak", "ayah", "abang", "akak"].forEach((n, i) => {
+      tl.fromTo("#strike-" + n, { scaleX: 0 }, { scaleX: 1, duration: 0.14, ease: "power3.out" }, 3.4 + i * 0.04);
+    });
+    tl.to("#chips-grid", { opacity: 0.22, scale: 0.94, duration: 0.25, ease: "power2.out" }, 3.55);
+    tl.to("#chips-title", { opacity: 0, duration: 0.15, ease: "power2.in" }, 3.45);
+    tl.fromTo("#chips-slam", { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.24, ease: "expo.out" }, 3.53);
+    tl.fromTo("#chips-slam", { x: 0 }, { x: 14, duration: 0.04, ease: "none", yoyo: true, repeat: 3 }, 3.77);
+    // Leave on the cut to the pitch.
+    tl.to(["#chips-slam", "#chips-grid"], { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.22, ease: "power3.in" }, 5.0);
+    tl.to("#chips-scrim", { opacity: 0, duration: 0.22, ease: "power2.in" }, 5.0);
+    window.__timelines["chips"] = tl;
+  </script>
+</template>
