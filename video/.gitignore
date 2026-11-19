@@ -2,3 +2,4 @@ node_modules/
 bangtaf-saga/.hyperframes/
 bangtaf-saga/renders/
 bangtaf-saga/assets/source.mp4
+bangtaf-saga/.transcode-cache/
